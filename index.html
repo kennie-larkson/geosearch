@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geolocation App</title>
+</head>
+<body>
+
+    <form action="">
+        Enter search city: <input type="text" name="" id="city">
+        Enter search country: <input type="text" name="" id="country">
+    </form>
+    <!--<button type="button" id="btn">Search</button>-->
+    <input type="button" id="btn" value="Search">
+
+    <p id="info"></p>
+
+
+
+
+    <script>
+       
+            const api_url = "api.openweathermap.org/data/2.5/weather?q=";
+            const city = document.getElementById('city').value;
+            const appid = '7e16f20a2aca5ff2a3a8004bf455ec04';
+            // const country = document.getElementById('country').value;
+
+        async function fetchWeather(){
+
+            console.log('trying to fetch weather');
+            const response = await fetch('http://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&APPID=7e16f20a2aca5ff2a3a8004bf455ec04');
+            console.log('got response');
+            console.log(response);
+            const data = await response.json();
+            console.log(data);
+            console.log('json data');
+            
+            const {name, humidity, temp} = data;
+            document.getElementById('info').textContent = name+':'+data.main.temp;
+            
+            console.log(name);
+        }
+
+        document.getElementById('btn').addEventListener('click',
+
+        fetchWeather().then(response =>{console.log('yay');}). catch(error =>{ console.log(error); console.log('oops');})
+        )
+
+        
+
+        
+
+    
+    </script>
+</body>
+</html>
