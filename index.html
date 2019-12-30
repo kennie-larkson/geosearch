@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Geolocation App</title>
+    <style>
+        body{ background-color: darkgrey; text-align: center;}
+        strong{ color:green;}
+        h1,h3{ color: green;}
+        input{ border: none; outline: none; margin: 10px 0;}
+    </style>
 </head>
 <body>
 
+    <h1>Search Geo-Data</h1>
+
+    <p><h3>Get the geographical coordinates of your favorite vacation city! </h3></p>
+
     
-        Enter search city: <input type="text" name="" id="city"><br>
-        Enter search country: <input type="text" name="" id="country">
+        <strong>Enter search city:</strong> <input type="text" name="" id="city"><br>
+        <strong>Enter search country:</strong> <input type="text" name="" id="country"><br>
     
     <button type="button" id="btn">Search</button>
     
@@ -41,8 +51,8 @@
             const{coord} = data;
             console.log(coord);
 
-             document.getElementById('info').innerText = `The city of ${document.getElementById('city').value} in ${document.getElementById('country').value} is on
-             longitude  ${coord.lon} degrees North and  latitude ${coord.lat} degrees East`;
+             document.getElementById('info').innerHTML = `The city of <strong> ${document.getElementById('city').value}</strong>  in <strong>${document.getElementById('country').value}</strong> is on
+             longitude <strong> ${coord.lon} </strong>degrees <strong>North</strong> and  latitude <strong> ${coord.lat}</strong> degrees <strong> East </strong>`;
 
             
         }
