@@ -6,26 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Geolocation App</title>
     <style>
-        body{ background-color: darkgrey; text-align: center;}
+        body{ background-color: darkgrey; text-align: center; font-size: 32px;justify-content: center; display: flex; font-size: 25px; }
+        #container{ border: 2px solid black; border-radius: 10px; width: 50%; text-align: center; margin: 50px;}
         strong{ color:green;}
         h1,h3{ color: green;}
-        input{ border: none; outline: none; margin: 10px 0;}
+        input{ border: none; outline: none; margin: 10px 0; padding: 10px; font-size: medium;}
+        button{ font-size: x-large; color: blue;}
     </style>
 </head>
 <body>
 
-    <h1>Search Geo-Data</h1>
+    <div id="container">
+            <h1>Search Geo-Data</h1>
+            <hr>
 
-    <p><h3>Get the geographical coordinates of your favorite vacation city! </h3></p>
+            <p><h3>Get the geographical coordinates of your favorite vacation city! </h3></p>
+        
+            
+                <strong>Enter search city:</strong> <input type="text" name="" id="city"><br>
+                <strong>Enter search country:</strong> <input type="text" name="" id="country"><br>
+            
+            <button type="button" id="btn">Search</button>
+            
+        
+            <p id="info"></p>
+    </div>
 
     
-        <strong>Enter search city:</strong> <input type="text" name="" id="city"><br>
-        <strong>Enter search country:</strong> <input type="text" name="" id="country"><br>
-    
-    <button type="button" id="btn">Search</button>
-    
-
-    <p id="info"></p>
 
 
 
@@ -43,16 +50,20 @@
 
             const url = api_path+document.getElementById('city').value+','+document.getElementById('country').value+APIKEY;
 
-            const response = await fetch(url);
             
-            const data = await response.json();
-            console.log(data);
+                const response = await fetch(url);
+            
+                const data = await response.json();
+                console.log(data);
 
-            const{coord} = data;
-            console.log(coord);
+            
+                const{coord, weather, main} = data;
+                console.log(coord);
+                console.log(weather);
 
              document.getElementById('info').innerHTML = `The city of <strong> ${document.getElementById('city').value}</strong>  in <strong>${document.getElementById('country').value}</strong> is on
-             longitude <strong> ${coord.lon} </strong>degrees <strong>North</strong> and  latitude <strong> ${coord.lat}</strong> degrees <strong> East </strong>`;
+             longitude <strong> ${coord.lon} </strong>degrees and  latitude <strong> ${coord.lat}</strong> degrees<br>
+             Weather Information :<strong> ${weather[0].description} </strong><br>Temperature :<strong>${main.temp}</strong>`;
 
             
         }
