@@ -8,10 +8,10 @@
 </head>
 <body>
 
-    <form action="">
-        Enter search city: <input type="text" name="" id="city">
+    
+        Enter search city: <input type="text" name="" id="city"><br>
         Enter search country: <input type="text" name="" id="country">
-    </form>
+    
     <button type="button" id="btn">Search</button>
     
 
@@ -22,42 +22,41 @@
 
     <script>
 
+        const api_path = 'http://api.openweathermap.org/data/2.5/weather?q=';
+        const APIKEY = '&APPID=7e16f20a2aca5ff2a3a8004bf455ec04';
+        
 
+            console.log('trying to fetch weather');
+
+            
         async function fetchWeather(){
 
-            // console.log('trying to fetch weather');
-            const response = await fetch('http://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&APPID=7e16f20a2aca5ff2a3a8004bf455ec04');
-            // console.log('got response');
-            // console.log(response);
+            const url = api_path+document.getElementById('city').value+','+document.getElementById('country').value+APIKEY;
 
-            // if (response.status !== 200){
-            //     // console.log('mad oo');
-            //     const newDiv = document.createElement('div').innerText = 'Mad o';
-            //     document.getElementById('info').append(newDiv);
-                
-            //  }else{ console.log(response.status);
-            //     const newDiv = document.createElement('div').innerText ='Response status: '+ response.status;
-            //     document.getElementById('info').append(newDiv);}
+            const response = await fetch(url);
             
             const data = await response.json();
             console.log(data);
-            console.log('json data');
+
+            const{coord} = data;
+            console.log(coord);
+
+             document.getElementById('info').innerText = `The city of ${document.getElementById('city').value} in ${document.getElementById('country').value} is on
+             longitude  ${coord.lon} degrees North and  latitude ${coord.lat} degrees East`;
+
             
-            const {name, temp, lat, lon} = data;
-            document.getElementById('info').textContent = name+':'+data.main.temp+','+data.coord.lat+' '+data.coord.lon+' '+data.sys.country;
-            
-            
-            // console.log(name);
         }
 
          
-            document.getElementById('btn').addEventListener('click',fetchWeather());
-       
+            document.getElementById('btn').addEventListener('click',fetchWeather);
 
-        // fetchWeather()
-        // .then(response => { console.log('yay!')})
-        // .catch(error => {console.error()
-        // console.log('oops!')});
+            
+       
+    
+    
+    
+    
+    
 
         
 
