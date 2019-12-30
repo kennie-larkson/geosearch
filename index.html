@@ -7,7 +7,7 @@
     <title>Geolocation App</title>
     <style>
         body{ background-color: darkgrey; text-align: center; justify-content: center; display: flex; font-size: 25px; }
-        #container{ border: 2px solid black; border-radius: 10px; width: 50%; text-align: center; margin: 50px;}
+        #container{  border-radius: 10px; width: 50%; text-align: center; margin: 50px;}
         strong{ color:green;}
         /* h1{text-align: center; display: flex;}
         #border{ border-radius: 20px; width: 80%; text-align: center; background: black;  } */
@@ -24,22 +24,29 @@
 </head>
 <body>
 
-    <div id="container">
+        <div id="container">
 
-        <h1><div id="border">Search Geo-Data</div></h1>
+    <fieldset>
             
-            <hr>
+        <legend>
 
-            <p><h3>Get the geographical coordinates of your favorite vacation city! </h3></p>
+                <h1><div id="border">Search Geo-Data</div></h1>
+                    
+                    <hr></legend>
+                    <p><h3>Get the geographical coordinates of your favorite vacation city! </h3></p>
         
             
-                <strong>Enter search city:</strong> <input type="text" name="" id="city"><br>
-                <strong>Enter search country:</strong> <input type="text" name="" id="country"><br>
+                    <strong>Enter search city:</strong> <input type="text" name="" id="city"><br>
+                    <strong>Enter search country:</strong> <input type="text" name="" id="country"><br>
+                
+                <button type="button" id="btn">Search</button>
+                
             
-            <button type="button" id="btn">Search</button>
-            
-        
-            <p id="info"></p>
+                <p id="info"></p>
+    </fieldset>
+    
+
+           
     </div>
 
     
